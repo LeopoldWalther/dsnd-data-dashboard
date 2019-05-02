@@ -1,1 +1,1 @@
-web gunicorn twitterapi:app
+web gunicorn myapp:app
