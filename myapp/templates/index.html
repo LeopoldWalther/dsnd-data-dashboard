@@ -1,0 +1,118 @@
+<html>
+<!-- NOTE: Most of the code here is taken from the Udacity Data Science Nanodegree
+Flask/Plotly/Pandas Dashboard lesson. This project is intended as a customization of
+that data dashboard where I create a dashboard using different visualizations. However,
+as my focus for this project is mainly on gaining experience with Flask and Heroku, I
+have not focused much on customizing the boilerplate Bootstrap template for this page! 
+Just wanted to give credit where credit is due. :) -->
+
+<head>
+    <title>Twitter API Data Dashboard</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">Twitter API Data Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.udacity.com">Udacity</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html"> Twitter API Docs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- middle section -->
+    <div class="row">
+
+        <!-- socials -->
+        <div class="col-1 border-right">
+            <div id="follow-me" class="mt-3">
+                <a href="https://www.linkedin.com/in/brian-wang-75b6a64b/">
+                    <img src="/static/linkedinlogo.png" alt="linkedin" class="img-fluid mb-4 ml-2">
+                </a>
+                <a href="https://github.com/brianbamboo/">
+                    <img src="/static/assets/githublogo.png" alt="github" class="img-fluid mb-4 ml-2">
+                </a>
+            </div>
+        </div>
+
+        <!-- visualization column -->
+        <div class="col-11">
+
+            <!-- chart descriptions -->
+            <div id="middle-info" class="mt-3 text-center">
+                <h2 id="tag-line">Twitter API Data Dashboard</h2>
+                <h4 id="tag-line" class="text-muted">Descriptive statistics based on a sample of tweets from select queries</h4>
+                <h6 id="tag-line" class="text-muted font-italic">["dogs", "cats", "pizza", "beyonce", "dinosaurs", "avengers", "summer", "hungry", "kanye", "ariana grande"]</h6>
+
+            </div>
+
+            <!-- charts -->
+            <div id="charts" class="container mt-3 text-center">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div id="{{ids[0]}}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div id="{{ids[1]}}"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div id="{{ids[2]}}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div id="{{ids[3]}}"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div id="{{ids[4]}}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div id="{{ids[5]}}"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- footer section -->
+    <div id="footer" class="container"></div>
+</body>
+<footer>
+
+    <script type="text/javascript">
+        var figures = {{figuresJSON | safe}};
+        var ids = {{ids | safe}};
+        for (var i in figures) {
+            Plotly.plot(ids[i],
+                figures[i].data,
+                figures[i].layout || {});
+        }
+    </script>
+
+</footer>
+</html>
