@@ -48,6 +48,29 @@ def get_most_common_words(q):
     
     return Counter(all_text).most_common(10)
 
+def plot_most_common_words(q):
+    res = get_most_common_words(q)
+    height = [ x[1] for x in res ]
+    labels = [ x[0] for x in res ]
+
+    graph = []
+
+    graph.append(
+      go.Bar(
+      x = labels,
+      y = height
+      )
+    )
+
+    layout = dict(title = 'Most common words in "{}" tweets returned by Twitter API'.format(q),
+                xaxis = dict(title = '',),
+                yaxis = dict(title = 'Count'),
+                titlefont = dict(size = 12)
+                )
+
+    return graph, layout
+
+
 def load_data_from_twitter_api(topics=topics):
     results = [ twitter.search(q=topic, count=100, result_type="popular", lang="en") for topic in topics ]
     return results
@@ -123,85 +146,11 @@ def return_figures():
                 titlefont = dict(size = 12)
                 )
 
-    # Visualization 3
-    av_res = get_most_common_words("avengers")
-    height = [ x[1] for x in av_res ]
-    labels = [ x[0] for x in av_res ]
-
-    graph_three = []
-
-    graph_three.append(
-      go.Bar(
-      x = labels,
-      y = height
-      )
-    )
-
-    layout_three = dict(title = 'Most common words in "avengers" tweets returned by Twitter API',
-                xaxis = dict(title = '',),
-                yaxis = dict(title = 'Count'),
-                titlefont = dict(size = 12)
-                )
-
-    # Visualization 4
-    dog_res = get_most_common_words("dogs")
-    height = [ x[1] for x in dog_res ]
-    labels = [ x[0] for x in dog_res ]
-    
-    graph_four = []
-
-    graph_four.append(
-      go.Bar(
-      x = labels,
-      y = height
-      )
-    )
-
-    layout_four = dict(title = 'Most common words in "dogs" tweets returned by Twitter API',
-                xaxis = dict(title = '',),
-                yaxis = dict(title = 'Count'),
-                titlefont = dict(size = 12)
-                )
-
-    # Visualization 5
-    pizza_res = get_most_common_words("pizza")
-    height = [ x[1] for x in pizza_res ]
-    labels = [ x[0] for x in pizza_res ]
-
-    graph_five = []
-
-    graph_five.append(
-      go.Bar(
-      x = labels,
-      y = height
-      )
-    )
-
-    layout_five = dict(title = 'Most common words in "pizza" tweets returned by Twitter API',
-                xaxis = dict(title = '',),
-                yaxis = dict(title = 'Count'),
-                titlefont = dict(size = 12)
-                )
-
-    # Visualization 6
-    dino_res = get_most_common_words("dinosaurs")
-    height = [ x[1] for x in dino_res ]
-    labels = [ x[0] for x in dino_res ]
-
-    graph_six = []
-
-    graph_six.append(
-      go.Bar(
-      x = labels,
-      y = height
-      )
-    )
-
-    layout_six = dict(title = 'Most common words in "dinosaurs" tweets returned by Twitter API',
-                xaxis = dict(title = '',),
-                yaxis = dict(title = 'Count'),
-                titlefont = dict(size = 12)
-                )
+    # Visualization 3-6
+    graph_three, layout_three = plot_most_common_words("avengers")
+    graph_four, layout_four = plot_most_common_words("dogs")
+    graph_five, layout_five = plot_most_common_words("pizza") 
+    graph_six, layout_six = plot_most_common_words("dinosaurs")
 
     # append all charts to the figures list
     figures = []
