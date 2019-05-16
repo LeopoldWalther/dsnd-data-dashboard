@@ -3,7 +3,7 @@
 This repository contains files I used in order to build a simple visualization dashboard for some sample Twitter data on Heroku.
 
 ## Installations
-Libraries used in this data analysis include [pandas](https://pandas.pydata.org/), [nltk](https://www.nltk.org/), [plotly](https://plot.ly/python/), and [matplotlib/pyplot](https://matplotlib.org/api/pyplot_api.html). These are all super well-known Python libraries, and further installation instructions can be found on their respective websites (linked). The Twitter API library [Twython]((https://twython.readthedocs.io/en/latest/) was used to obtain data. App was built using [Flask](http://flask.pocoo.org/) and deployed on [Heroku](https://dashboard.heroku.com/login). 
+Libraries used in this data analysis include [pandas](https://pandas.pydata.org/), [nltk](https://www.nltk.org/), [plotly](https://plot.ly/python/), and [matplotlib/pyplot](https://matplotlib.org/api/pyplot_api.html). These are all super well-known Python libraries, and further installation instructions can be found on their respective websites (linked). The Twitter API library [Twython](https://twython.readthedocs.io/en/latest/) was used to obtain data. App was built using [Flask](http://flask.pocoo.org/) and deployed on [Heroku](https://dashboard.heroku.com/login). 
 
 ## Motivation
 The primary motivation for this project was to complete an optional component of the Udacity Data Scientist Nanodegree. I chose to complete this project to gain experience creating and deploying apps with Flask and Heroku. 
